@@ -17,7 +17,7 @@ const Page = ({ data }) => {
                 title: tile.title,
                 width: tile.width,
                 height: tile.height,
-                image: `${process.env.GRAPHQL_URL}${tile.image.data.attributes.url}`,
+                image: `${process.env.CDN_URL}/${tile.image.data.attributes.url}`,
                 link: tile.url.data.attributes.url,
             }
         }
