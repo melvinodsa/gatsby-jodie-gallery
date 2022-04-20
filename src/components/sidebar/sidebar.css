@@ -1,0 +1,66 @@
+.sidebar-wrapper {
+    width: 320px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 20px;
+    position: fixed;
+}
+
+.sidebar-wrapper.black {
+    background-color: black;
+    color: white;
+}
+
+.sidebar-wrapper.black a:visited, .sidebar-wrapper.black a:not(:visited) {
+    color: white;
+}
+
+.sidebar-wrapper.black svg {
+    fill: white;
+}
+
+
+.sidebar-wrapper.white {
+    background-color: white;
+    color: black;
+}
+
+.sidebar-wrapper.white svg {
+    fill: black;
+}
+
+.sidebar-wrapper.white a:visited, .sidebar-wrapper.white a:not(:visited) {
+    color: black;
+}
+
+.sidebar-header {
+    display: flex;
+    flex-direction: column;
+    height: 15vh;
+}
+
+.sidebar-nav {
+    height: 80vh;
+    padding: 5vh 0;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-nav li a {
+   font-size: 27px;
+   transition: all 0.3s ease-in-out;
+   font-weight: 400;
+   text-decoration-line: none;
+   text-decoration-style: solid;
+   text-decoration-thickness: auto;
+}
+
+.sidebar-nav li a:hover {
+    color: #f18a27!important;
+}
