@@ -6,6 +6,7 @@ import './sidebar.css'
 import Logo from '../logo'
 
 
+const isBrowser = () => typeof window !== "undefined"
 
 
 const Layout = () => {
@@ -35,7 +36,7 @@ const Layout = () => {
 
 
   const hasLogoImg = (data.site.siteMetadata?.logo || '').length > 0;
-  const isIndexLocation = window.location.pathname === '/';
+  const isIndexLocation = isBrowser() && window.location.pathname === '/';
 
   return (
     <div className={`sidebar-wrapper ${isIndexLocation ? 'white' : 'black'}`}>
