@@ -56,7 +56,7 @@ module.exports = {
     {
       resolve: 'gatsby-source-graphql',
       options: {
-        url: `${process.env.GRAPHQL_URL}graphql`,
+        url: `${process.env.GRAPHQL_URL}/graphql`,
         // This type will contain remote schema Query type
         typeName: "STRAPI",
         // This is the field under which it's accessible
