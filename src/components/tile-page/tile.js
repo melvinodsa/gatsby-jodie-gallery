@@ -20,7 +20,7 @@ const Tile = ({ tile }) => {
             transition: 'all .5s',
             marginBottom: '0',
             zIndex: '5',
-        }} src={tile.image} />
+        }} src={tile.image} alt={tile.caption} />
         <span style={{
             color: 'white',
             fontWeight: 700,

@@ -1,11 +1,5 @@
 exports.createPages = async ({ actions, graphql, reporter }) => {
-  const { createPage } = actions
-  createPage({
-    path: "/using-dsg",
-    component: require.resolve("./src/templates/using-dsg.js"),
-    context: {},
-    defer: true,
-  })
+  const { createPage } = actions;
 
   const { data, errors } = await graphql(GET_ALL_PAGES_QUERY)
   if (errors) {
@@ -45,6 +39,7 @@ const GET_ALL_PAGES_QUERY = `
             title,
             width,
             height,
+            caption,
             image {
               data {
                 attributes {

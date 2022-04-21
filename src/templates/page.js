@@ -19,12 +19,13 @@ const Page = ({ data }) => {
         height: tile.height,
         image: `${process.env.CDN_URL}${tile.image.data.attributes.url}`,
         link: tile.url.data.attributes.url,
+        caption: tile.caption,
       }
     }
   );
   const hasTiles = data.strapi.page.data.attributes.tiles.length > 0;
   const hasBlog = data.strapi.page.data.attributes.blog && !hasTiles;
-  const blog = data.strapi.page.data.attributes.blog;
+  const blog = data.strapi.page.data.attributes.blog || { data: "", title: "" };
   blog.data = blog.data.replaceAll('(/uploads/', `(${process.env.CDN_URL}/uploads/`);
   return (
     <Layout>
@@ -53,6 +54,7 @@ export const query = graphql`
                   title
                   width
                   height
+                  caption
                   image {
                     data {
                       attributes {
