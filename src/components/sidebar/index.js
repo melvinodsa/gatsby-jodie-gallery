@@ -46,7 +46,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
   return (
     <div className={`sidebar-wrapper ${isIndexLocation() ? 'white' : 'black'} ${!isOpen && 'closed'}`}>
       <header className="sidebar-header">
-        <div className="sidebar-nav-icon" onClick={() => { setIsOpen(!isOpen) }}> <FontAwesomeIcon icon={faBars} /></div>
+        <div role="button" className="sidebar-nav-icon" onClick={() => { setIsOpen(!isOpen) }}> <FontAwesomeIcon icon={faBars} /></div>
         {hasLogoImg && <img style={{ display: `${isOpen ? 'block' : 'none'}` }} src={data.site.siteMetadata.logo} alt={data.site.siteMetadata.title} />}
         {!hasLogoImg && <Logo visible={isOpen} />}
         <h3 style={{ display: `${isOpen ? 'block' : 'none'}`, marginTop: '10px' }}>{data.site.siteMetadata?.title || `Title`}</h3>
