@@ -14,7 +14,7 @@ const Page = ({ data }) => {
   const tiles = data.strapi.page.data.attributes.tiles.map(
     tile => {
       return {
-        title: tile.title,
+        title: tile.title?.data?.attributes?.title,
         width: tile.width,
         height: tile.height,
         image: `${process.env.CDN_URL}${tile.image.data.attributes.url}`,
@@ -51,7 +51,13 @@ export const query = graphql`
                   data
                 }
                 tiles {
-                  title
+                  title {
+                    data {
+                      attributes {
+                        title,
+                      }
+                    }
+                  }
                   width
                   height
                   caption

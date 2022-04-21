@@ -36,7 +36,13 @@ const GET_ALL_PAGES_QUERY = `
             data,
           },
           tiles {
-            title,
+            title {
+              data {
+                attributes {
+                  title,
+                }
+              }
+            },
             width,
             height,
             caption,
