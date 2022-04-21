@@ -39,6 +39,9 @@ export const defaultScreenSize = { width: 1440, height: 821 };
 
 export const isBrowser = () => typeof window !== "undefined";
 
-export const isIndexLocation = () => isBrowser() && (
-    window.location.pathname === '/' || window.location.pathname === ''
-);
+export const isIndexLocation = () => {
+    if (!isBrowser) {
+        return true;
+    }
+    return window.location.pathname === '/' || window.location.pathname === '';
+};
