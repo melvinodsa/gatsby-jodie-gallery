@@ -1,11 +1,16 @@
 .sidebar-wrapper {
-    width: 320px;
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     padding: 20px;
     position: fixed;
+    width: 320px;
+    transition: width 0.5s;
+}
+
+.sidebar-wrapper.closed {
+    width: 40px;
 }
 
 .sidebar-wrapper.black {
@@ -43,7 +48,11 @@
 
 .sidebar-nav {
     height: 80vh;
-    padding: 5vh 0;
+    padding: 100px 0;
+}
+
+.sidebar-nav.closed {
+    display: none;
 }
 
 .sidebar-nav ul {
@@ -63,4 +72,11 @@
 
 .sidebar-nav li a:hover {
     color: #f18a27!important;
+}
+
+.sidebar-nav-icon {
+    display: flex;
+    justify-content: flex-start;
+    cursor: pointer;
+    margin-bottom: 20px;
 }

@@ -2,14 +2,19 @@ import PropTypes from "prop-types"
 import * as React from "react"
 
 import { Link } from "gatsby"
+import { useIsLargeScreen } from "../../utils/browser";
 
 
 const Tile = ({ tile }) => {
+    const isLargeScreen = useIsLargeScreen();
+    const width = isLargeScreen ? `${tile.width * 100 / 6}%` : '100%';
+    const alignItems = isLargeScreen ? 'flex-start' : 'center';
     return <Link className="zoom" to={tile.link} style={{
-        width: `${tile.width * 100 / 6}%`,
+        width: `${width}`,
         height: `${tile.height * 25}vh`,
         textAlign: 'right',
         display: 'flex',
+        alignItems: alignItems,
         textDecoration: 'none',
     }}>
         <img style={{

@@ -1,4 +1,4 @@
-import * as React from "react"
+import React, { useState } from "react"
 import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
@@ -11,13 +11,15 @@ import BlogPage from "../components/blog"
 
 
 const Page = ({ data }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const cdnUrl = process.env.CDN_URL || 'https://portfolio.melvindavis.me';
   const tiles = data.strapi.page.data.attributes.tiles.map(
     tile => {
       return {
         title: tile.title?.data?.attributes?.title,
         width: tile.width,
         height: tile.height,
-        image: `${process.env.CDN_URL}${tile.image.data.attributes.url}`,
+        image: `${cdnUrl}${tile.image.data.attributes.url}`,
         link: tile.url.data.attributes.url,
         caption: tile.caption,
       }
@@ -26,12 +28,12 @@ const Page = ({ data }) => {
   const hasTiles = data.strapi.page.data.attributes.tiles.length > 0;
   const hasBlog = data.strapi.page.data.attributes.blog && !hasTiles;
   const blog = data.strapi.page.data.attributes.blog || { data: "", title: "" };
-  blog.data = blog.data.replaceAll('(/uploads/', `(${process.env.CDN_URL}/uploads/`);
+  blog.data = blog.data.replaceAll('(/uploads/', `(${cdnUrl}/uploads/`);
   return (
-    <Layout>
+    <Layout isOpen={isOpen} setIsOpen={setIsOpen}>
       <Seo title={data.strapi.page.data.attributes.title} />
-      {hasTiles && <TilePage tiles={tiles}></TilePage>}
-      {hasBlog && <BlogPage blog={blog} />}
+      {hasTiles && <TilePage isOpen={isOpen} tiles={tiles}></TilePage>}
+      {hasBlog && <BlogPage isOpen={isOpen} blog={blog} />}
     </Layout>
   )
 }
