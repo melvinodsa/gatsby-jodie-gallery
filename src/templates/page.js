@@ -11,26 +11,28 @@ import BlogPage from "../components/blog"
 
 
 const Page = ({ data }) => {
-    const tiles = data.strapi.page.data.attributes.tiles.map(
-        tile => {
-            return {
-                title: tile.title,
-                width: tile.width,
-                height: tile.height,
-                image: `${process.env.CDN_URL}${tile.image.data.attributes.url}`,
-                link: tile.url.data.attributes.url,
-            }
-        }
-    );
-    const hasTiles = data.strapi.page.data.attributes.tiles.length > 0;
-    const hasBlog = data.strapi.page.data.attributes.blog && !hasTiles;
-    return (
-        <Layout>
-            <Seo title={data.strapi.page.data.attributes.title} />
-            {hasTiles && <TilePage tiles={tiles}></TilePage>}
-            {hasBlog && <BlogPage blog={data.strapi.page.data.attributes.blog} />}
-        </Layout>
-    )
+  const tiles = data.strapi.page.data.attributes.tiles.map(
+    tile => {
+      return {
+        title: tile.title,
+        width: tile.width,
+        height: tile.height,
+        image: `${process.env.CDN_URL}${tile.image.data.attributes.url}`,
+        link: tile.url.data.attributes.url,
+      }
+    }
+  );
+  const hasTiles = data.strapi.page.data.attributes.tiles.length > 0;
+  const hasBlog = data.strapi.page.data.attributes.blog && !hasTiles;
+  const blog = data.strapi.page.data.attributes.blog;
+  blog.data = blog.data.replaceAll('(/uploads/', `(${process.env.CDN_URL}/uploads/`);
+  return (
+    <Layout>
+      <Seo title={data.strapi.page.data.attributes.title} />
+      {hasTiles && <TilePage tiles={tiles}></TilePage>}
+      {hasBlog && <BlogPage blog={blog} />}
+    </Layout>
+  )
 }
 
 export const query = graphql`
